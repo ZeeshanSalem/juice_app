@@ -1,58 +1,70 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:juici/core/contants/colors.dart';
 import 'package:juici/core/contants/text_styles.dart';
+import 'package:juici/core/models/juice.dart';
+import 'package:juici/ui/custom_widgets/AddtoCard_button.dart';
+import 'package:juici/ui/screens/main/main_provider.dart';
+import 'package:provider/provider.dart';
 
 class JuiceTile extends StatelessWidget {
-  final String title;
-  final String description;
-  final String price;
 
-  JuiceTile({this.title, this.description, this.price});
+  var onPressed;
+  Juice cart;
+  var index;
+
+  JuiceTile({this.cart, this.index, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ListTile(
-          title: Text("$title \n",
-
-            style: h2textstyle,),
-          subtitle: Text(description,
-            style: descriptiontextstyle,),
-        ),
-        SizedBox(height: 10.0,),
-
-        Container(
-          padding: EdgeInsets.only(left: 10.0),
-          child: Row(
+        GestureDetector(
+          onTap: onPressed,
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-              Text(price,
-                style: menupricetextstyle,),
-
-              SizedBox( width: 10.0,),
-
-
-
-              ButtonBar(
-                  buttonMinWidth: 20.0,
-                  buttonHeight: 20.0,
-                  children: [
-                    RaisedButton(
-                        color: addbuttoncolor,
-                        onPressed: (){print("");},
-                        child: Text(" - 1 + ")),
-                  ],
+              ListTile(
+                title: Text(
+                  "${cart.name} \n",
+                  style: h2textstyle,
                 ),
-
-
+                subtitle: Text(
+                  "${cart.description}",
+                  style: descriptiontextstyle,
+                ),
+              ),
             ],
           ),
-        )
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                "${cart.price}",
+                style: menupricetextstyle,
+              ),
+            ),
+            Expanded(
+              child: Consumer<MainProvider>(
+                builder: (context, model, child) => AddCartButton(
+                  onAdd: () {
+                    model.incrementCounter(index);
+                  },
+                  onMinus: () {
+                    model.decrementCounter(index);
+                  },
+                  count: model.juices[index].itemCount.toString(),
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

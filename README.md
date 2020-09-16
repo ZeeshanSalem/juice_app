@@ -1,16 +1,16 @@
-# juici
+# juicy App
 
-A new Flutter application.
+##A new Flutter application.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+*** It is mobile application where user can order juices online. It is so interested design for beginner you can enhance your skill and also learn reusable of code and optimisation of code ***
 
-A few resources to get you started if this is your first Flutter project:
+##Functions
+- Searching
+- Category
+- Adding items to card
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+![App Interface](/Users/zeeshan_saleem/Desktop/Screenshot 2020-09-16 at 5.46.41 PM.png)
